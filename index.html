@@ -43,6 +43,10 @@
                 text-align: justify;
             }
 
+            .small {
+                font-size: 0.2em !important;
+            }
+
         </style>
 	</head>
 
@@ -52,15 +56,15 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section data-background="img/background.png">
+				<section>
 					<h1>Introducción a PHPUnit</h1>
-					<h3>Drupal Day Spain - Bilbao, 2014</h3>
+				
 					<p>
 						<small> <a href="http://www.carlosreig.es">Carlos Reig Matut</a> / <a href="http://www.twitter.com/unstatu">@unstatu</a></small>
 					</p>
 				</section>
 
-                <section data-background="img/background.png">
+                <section>
                     <h2>¿Quién soy?</h2>
 
                     <ul style="list-style: none; text-align: right; margin-top: 50px;">
@@ -68,6 +72,7 @@
                         <li>Ingeniero informático por la UV</li>
                         <li>Freelance web developer</li>
                         <li><a href="http://www.twitter.com/unstatu">@unstatu</a></li>
+                        <li><a href="mailto:unstatu@gmail.com">unstatu@gmail.com</a></li>
                     </ul>
                     <img style="float:right; margin-left: 30px" src="img/fotoPresentacion.jpg">
 
@@ -77,86 +82,88 @@
                     </ul>
                 </section>
 
-                <section data-background="img/background.png">
+                <section>
                     <h2>¿Qué es PHPUnit?</h2>
                     <p>PHPUnit es un framework orientado a objetos para realizar testing en PHP.</p>
-                </section>
-
-                <section data-background="img/background.png">
-                    <h2>Entonces... ¿Qué es testing?</h2>
-                    <p>Testing, en este caso, es automatizar el proceso de comprobar que las cosas funcionan como hemos pensado que lo hagan.</p>
-
                     <aside class="notes">
-                        También hay testing manual...
+                            12 632 installs
                     </aside>
                 </section>
 
-                <section data-background="img/background.png">
-                    <h2>¿Por qué es bueno tener tests?</h2>
-                    <ul>
-                        <li>Facilita refactorizar el código</li>
-                        <li>Ayuda a tener un buen diseño</li>
-                        <li><strong>Sirve para documentar el código</strong></li>
-                        <li>...</li>
-                    </ul>
+                <section>
+                    <section>
+                        <h2>Entonces... ¿Qué es testing?</h2>
+                        <p>Testing, en este caso, es automatizar el proceso de comprobar que las cosas funcionan como hemos pensado que lo hagan.</p>
 
-                    <aside class="notes">
-                        Permite el TDD. También da una sensación de seguridad, aunque tampoco está bien del todo...
-                        En un proyecto como Drupal tener tests es imprescindible.
-                    </aside>
+                        <aside class="notes">
+                            También hay testing manual...
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Tipos de testing</h2>
+                        <ul>
+                            <li><strong>Test unitario</strong></li>
+                            <li>Test de integración</li>
+                            <li>Test funcional</li>
+                            <li>Test de aceptación</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>¿Por qué es bueno tener tests?</h2>
+                        <ul>
+                            <li>Facilita refactorizar el código</li>
+                            <li>Ayuda a tener un buen diseño</li>
+                            <li><strong>Sirve para documentar el código</strong></li>
+    			<li>Permite identificar rápidamente qué está fallando</li>
+                            <li>...</li>
+                        </ul>
+
+                        <aside class="notes">
+                            Permite el TDD. También da una sensación de seguridad, aunque tampoco está bien del todo...
+                        </aside>
+                    </section>
+                    <section>
+                        <h1>F<span class="small">ast</span>I<span class="small">solated</span>R<span class="small">epeateble</span>S<span class="small">elf-verifying</span>T<span class="small">imely</span></h1>
+                    </section>
 
                 </section>
 
-                <section data-background="img/background.png">
-                    <h2>Los números de Drupal 8*</h2>
+                <section>
+                    <h2>Instalación y ejecución</h2>
                     <ul>
-                        <li>6498 tests</li>
-                        <li>35929 asserts</li>
-                    </ul>
-                    <aside class="notes">
-                        Drupal 8 también utiliza SimpleTest que es otro Framework the tests unitarios.
-                        Tests con ejemplo de cuenta bancaria.
-                    </aside>
-                </section>
-
-                <section data-background="img/background.png">
-                    <h2>¿Y cómo los ejecuto?</h2>
-                    <ul>
-                        <li>El código de los tests está en <pre>./core/tests/Drupal/Tests/</pre> <pre>./core/modules/%MODULE%/tests/src/</pre></li>
+                        <li>Puedes instalarlo mediante composer
+			<pre><code>{
+    "require-dev": {
+        "phpunit/phpunit": "4.4.*"
+    }
+}</code></pre></li>
                         <li>Normalmente se ejecutan por línea de comandos:
-                            <pre>php ./core/vendor/bin/phpunit --configuration ./core</pre>
+                            <pre>php ./vendor/bin/phpunit</pre>
                         </li>
-                        <li>O puedes usar el módulo Testing (no está activado por defecto)</li>
-                        <li>O puedes usar Drush <pre>
-                            drush test-run
-                        </pre></li>
                     </ul>
                 </section>
 
-                <section data-background="img/background.png">
-                    <img src="img/Testing-Interface.png">
-                    <pre>admin/config/development/testing/</pre>
-                </section>
-
-                <section data-background="img/background.png">
+                <section>
                     <img src="img/PHPunit-terminal.png">
                 </section>
 
-                <section data-background="img/background.png">
-                    <h2>Estructura de una suite</h2>
+                <section>
+                    <h2>Las suites</h2>
                     <ul>
                         <li>Se compone de <em>test cases</em></li>
                         <li><strong>Un <em>test case</em> es una clase</strong> que hereda de <code>\PHPUnit_Framework_TestCase</code></li>
-                        <li>En Drupal 8 los <em>test cases</em> heredan de <code>\Drupal\Tests\UnitTestCase</code></li>
                     </ul>
                 </section>
 
-                <section data-background="img/background.png">
-                    <h2>Estructura de un test case</h2>
+                <section>
+                    <h2>Los test cases</h2>
                     <ul>
-                        <li>Es una clase: métodos y atributos</li>
-                        <li>Los tests son los métodos públicos que empiezan por "test": <pre><code>public function testSiEstaClaro() { $this->assertTrue( true ); }</code></pre></li>
+                        <li>Es una <strong>clase</strong>: métodos y atributos</li>
                         <li>Si un test tiene <strong>algún</strong> assert que no se cumpla, el test falla.</li>
+                        <li>Los tests son los métodos públicos que empiezan por "test": <pre><code>public function testSiEstaClaro() { $this->assertTrue( true ); }</code></pre></li>
                         <li>Dos métodos especiales:
                             <ul>
                                 <li><code>protected function setUp()</code></li>
@@ -171,7 +178,7 @@
                     </aside>
                 </section>
 
-                <section data-background="img/background.png">
+                <section>
                     <h3>1. Preparar el test</h3>
                     <h3>2. Actuar</h3>
                     <h3>3. Comprobar si el resultado es el esperado (con asserts)</h3>
@@ -184,7 +191,7 @@
                     </aside>
                 </section>
 
-                <section data-background="img/background.png">
+                <section>
                     <pre><code class="php">$this->config = array(
     'one' => '1',
     'two' => '2',
@@ -196,7 +203,7 @@ $this->assertEquals($this->config['two'], Settings::get('two'));
                     </code>Drupal\Tests\Core\Site\SettingsTest::testGet</pre>
                 </section>
 
-                <section data-background="img/background.png">
+                <section>
                     <pre><code class="php">//Preparar
 $this->config = array(
     'one' => '1',
@@ -214,323 +221,265 @@ $this->assertEquals($this->config['two'], $settingTwo);
                     </code>Drupal\Tests\Core\Site\SettingsTest::testGet</pre>
                 </section>
 
-                <section data-background="img/background.png">
-                    <h2>Fixtures</h2>
-                    <p>Cuando escribes un test necesitas empezar en un estado conocido. Este estado es la fixture del test.<p>
-                    <p>Se suele hacer en el <code>setUp</code> del test case</p>
-                    <aside class="notes">
-                        Ejemplo de la pila
-                    </aside>
+                <section>
+                    <h2>Nos ponemos en contexto</h2>
+                    <p>Nuestra aplicación es una calculadora de impuestos:
+                        <ul>
+                            <li>3 Clases: Calculadora, Factura y Cliente</li>
+                            <li>Cada factura tiene que tener un identificador único autogenerado</li>
+                            <li>Algunos clientes pueden tener descuentos especiales</li>
+                            <li>La calculadora debe poder almacenar y eliminar facturas.</li>
+                            <li>La calculadora debe poder obtener el total del dinero bruto y neto que hay en las facturas almacenadas</li>
+                        </ul>
+                    </p>
                 </section>
 
-                <section data-background="img/background.png">
-                    <section data-background="img/background.png">
+                <section>
+                    <h1>Manos a la obra</h1>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Fixtures</h2>
+                        <p>Cuando escribes un test necesitas empezar en un estado conocido. Este estado es la fixture del test.<p>
+                        <p>Se suele hacer en el <code>setUp</code> del test case</p>
+                        <aside class="notes">
+                            Ejemplo de la pila
+                        </aside>
+                    </section>
+
+                    <section>
+                        <pre><code>public function setUp() {
+        $this->oTrimesterCalculator = new TrimesterTaxCalculator();
+        $this->oClient = new Client( 'Obi Wan', 'Kenobi' );
+}
+public function testIfItAcceptsInvoices() {..}
+public function testIfItRemovesInvoices() {..}</code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
                         <h2>Asserts</h2>
                         <p>Hacen fallar el test si no se cumplen.</p>
                         <p>Hay 36 diferentes: <small>assertArrayHasKey, assertClassHasAttribute, assertClassHasStaticAttribute, assertContains, assertContainsOnly, assertContainsOnlyInstancesOf, assertCount, assertEmpty, assertEqualXMLStructure, assertEquals, assertFalse, assertFileEquals, assertFileExists, assertGreaterThan, assertGreaterThanOrEqual, assertInstanceOf, assertInternalType, assertJsonFileEqualsJsonFile, assertJsonStringEqualsJsonFile, assertJsonStringEqualsJsonString, assertLessThan, assertLessThanOrEqual, assertNull, assertObjectHasAttribute, assertRegExp, assertStringMatchesFormat, assertStringMatchesFormatFile, assertSame, assertStringEndsWith, assertStringEqualsFile, assertStringStartsWith, assertThat, assertTrue, assertXmlFileEqualsXmlFile, assertXmlStringEqualsXmlFile, assertXmlStringEqualsXmlString.</small></p>
                     </section>
 
-                    <section data-background="img/background.png">
-                        <pre><code>class TimerTest extends UnitTestCase {
+                    <section>
+                        <pre><code>class TrimesterTaxCalculatorTest extends \PHPUnit_Framework_TestCase {
+    ...
+    public function testIfItAcceptsInvoices() {            
+            $oInvoice = new Invoice( $this->oClient, 1000 );
+            $oInvoice2 = new Invoice( $this->oClient, 2000 );
 
-    /**
-    * Tests Timer::read() time accumulation accuracy across multiple restarts.
-    *
-    * @see \Drupal\Component\Utility\Timer::read()
-    */
-    public function testTimer() {
-        Timer::start('test');
-        usleep(5000);
-        $value = Timer::read('test');
-        usleep(5000);
-        $value2 = Timer::read('test');
-        ...
-        // Although we sleep for 5 milliseconds, we should test that at least 4 ms
-        // have past because usleep() is not reliable on Windows. See
-        // http://php.net/manual/en/function.usleep.php for more information. The
-        // purpose of the test to validate that the Timer class can measure elapsed
-        // time not the granularity of usleep() on a particular OS.
-        $this->assertGreaterThanOrEqual(4, $value, 'Timer failed to measure at least 4 milliseconds of sleeping while running.');
+            $this->oTrimesterCalculator->addInvoice( $oInvoice );
+            $aInvoices = $this->oTrimesterCalculator->getInvoices();
 
-        $this->assertGreaterThanOrEqual($value + 4, $value2, 'Timer failed to measure at least 8 milliseconds of sleeping while running.');
+            $this->oTrimesterCalculator->addInvoice( $oInvoice2 );
+            $aInvoices2 = $this->oTrimesterCalculator->getInvoices();
 
-        // Stop the timer.
-        $value5 = Timer::stop('test');
-        $this->assertGreaterThanOrEqual($value4, $value5['time'], 'Timer measured after stopping was not greater than last measurement.');
-        ...
+            $this->assertCount( 1, $aInvoices );
+            $this->assertEquals( 2, count( $aInvoices2 ) );
     }
-
-}</code>Drupal\Tests\Component\Utility\TimerTest</pre>
+    ...
+}</code></pre>
                     </section>
 
-                    <section data-background="img/background.png">
-                        <pre><code>class JsonTest extends UnitTestCase {
+                    <section>
+                        <pre><code>class TrimesterTaxCalculatorTest extends \PHPUnit_Framework_TestCase {
+    ...
+    public function testIfItRemovesInvoices() {
+        //preparar
+        $oInvoice = new Invoice( $this->oClient, 1000 );
+        $oInvoice2 = new Invoice( $this->oClient, 2000 );
 
-    /**
-    * A test string with the full ASCII table.
-    *
-    * @var string
-    */
-    protected $string;
+        $this->oTrimesterCalculator->addInvoice( $oInvoice );
+        $this->oTrimesterCalculator->addInvoice( $oInvoice2 );
 
-    /**
-    * An array of unsafe html characters which has to be encoded.
-    *
-    * @var array
-    */
-    protected $htmlUnsafe;
+        //actuar
+        $this->oTrimesterCalculator->removeInvoice( $oInvoice );
 
-    /**
-    * An array of unsafe html characters which are already escaped.
-    *
-    * @var array
-    */
-    protected $htmlUnsafeEscaped;
+        $aInvoices = $this->oTrimesterCalculator->getInvoices();
 
-
-    /**
-    * {@inheritdoc}
-    */
-    protected function setUp() {
-        parent::setUp();
-
-        // Setup a string with the full ASCII table.
-        // @todo: Add tests for non-ASCII characters and Unicode.
-        $this->string = '';
-        for ($i = 1; $i < 128; $i++) {
-            $this->string .= chr($i);
-        }
-
-        // Characters that must be escaped.
-        // We check for unescaped " separately.
-        $this->htmlUnsafe = array('<', '>', '\'', '&');
-        // The following are the encoded forms of: < > ' & "
-        $this->htmlUnsafeEscaped = array('\u003C', '\u003E', '\u0027', '\u0026', '\u0022');
+        //comprobar
+        //$this->assertCount( 1, $aInvoices );
+        $this->assertTrue( count( $aInvoices ) === 1 );
     }
+    ...
+}</code></pre>
+                    </section>
 
-    /**
-    * Tests encoding length.
-    */
-    public function testEncodingLength() {
-        // Verify that JSON encoding produces a string with all of the characters.
-        $json = Json::encode($this->string);
-        $this->assertTrue(strlen($json) > strlen($this->string), 'A JSON encoded string is larger than the source string.');
+                    <section>
+                        <pre><code>class InvoiceTest extends \PHPUnit_Framework_TestCase {
+    ...
+    public function testIfItGeneratesUniqIdsForEachInvoice() {
+        //preparar y actuar
+        $oInvoice = new Invoice( $this->oClient, 1000 );
+        $oInvoice2 = new Invoice( $this->oClient, 2000 );
+        $oInvoice3 = new Invoice( $this->oClient, 3000 );
+
+        $aInvoiceIds = array(
+            $oInvoice->getId(),
+            $oInvoice2->getId(),
+            $oInvoice3->getId(),
+        );
+
+        $aUniqueIds = array_unique( $aInvoiceIds );
+        //comprobar
+        $this->assertEquals( $aInvoiceIds, $aUniqueIds );
     }
-
-    /**
-    * Tests end and start of the encoded string.
-    */
-    public function testEncodingStartEnd() {
-        $json = Json::encode($this->string);
-        // The first and last characters should be ", and no others.
-        $this->assertTrue($json[0] == '"', 'A JSON encoded string begins with ".');
-        $this->assertTrue($json[strlen($json) - 1] == '"', 'A JSON encoded string ends with ".');
-        $this->assertTrue(substr_count($json, '"') == 2, 'A JSON encoded string contains exactly two ".');
-    }
-
-    /**
-    * Tests converting PHP variables to JSON strings and back.
-    */
-    public function testReversibility() {
-        $json = Json::encode($this->string);
-        // Verify that encoding/decoding is reversible.
-        $json_decoded = Json::decode($json);
-        $this->assertSame($this->string, $json_decoded, 'Encoding a string to JSON and decoding back results in the original string.');
-    }
-
-    /**
-    * Test the reversibility of structured data
-    */
-    public function testStructuredReversibility() {
-        // Verify reversibility for structured data. Also verify that necessary
-        // characters are escaped.
-        $source = array(TRUE, FALSE, 0, 1, '0', '1', $this->string, array('key1' => $this->string, 'key2' => array('nested' => TRUE)));
-        $json = Json::encode($source);
-        foreach ($this->htmlUnsafe as $char) {
-            $this->assertTrue(strpos($json, $char) === FALSE, sprintf('A JSON encoded string does not contain %s.', $char));
-        }
-        // Verify that JSON encoding escapes the HTML unsafe characters
-        foreach ($this->htmlUnsafeEscaped as $char) {
-            $this->assertTrue(strpos($json, $char) > 0, sprintf('A JSON encoded string contains %s.', $char));
-        }
-        $json_decoded = Json::decode($json);
-        $this->assertNotSame($source, $json, 'An array encoded in JSON is identical to the source.');
-        $this->assertSame($source, $json_decoded, 'Encoding structured data to JSON and decoding back not results in the original data.');
-    }</code>Drupal\Tests\Component\Serialization\JsonTest</pre>
+    ...
+}</code></pre>
                     </section>
                 </section>
 
-                <section data-background="img/background.png">
-                    <section data-background="img/background.png">
+                <section>
+                    <section>
                         <h2>Sobre los tests</h2>
                     </section>
 
-                    <section data-background="img/background.png">
+                    <section>
                         <h2>@depends</h2>
-                        <pre><code>class ConfigEntityBaseUnitTest extends UnitTestCase {
-...
+                        <pre><code>class TrimesterTaxCalculatorTest extends \PHPUnit_Framework_TestCase {
+    ...
     /**
-    * @covers ::setStatus
-    * @covers ::status
-    */
-    public function testSetStatus() {
-        $this->assertTrue($this->entity->status());
-        $this->assertSame($this->entity, $this->entity->setStatus(FALSE));
-        $this->assertFalse($this->entity->status());
-        $this->entity->setStatus(TRUE);
-        $this->assertTrue($this->entity->status());
-    }
+     * @depends testIfItAcceptsInvoices
+     */
+    public function testIfItRemovesInvoices() {
+        //preparar
+        $oInvoice = new Invoice( $this->oClient, 1000 );
+        $oInvoice2 = new Invoice( $this->oClient, 2000 );
 
-    /**
-    * @covers ::enable
-    * @depends testSetStatus
-    */
-    public function testEnable() {
-        $this->entity->setStatus(FALSE);
-        $this->assertSame($this->entity, $this->entity->enable());
-        $this->assertTrue($this->entity->status());
+        $this->oTrimesterCalculator->addInvoice( $oInvoice );
+        $this->oTrimesterCalculator->addInvoice( $oInvoice2 );
+
+        //actuar
+        $this->oTrimesterCalculator->removeInvoice( $oInvoice );
+
+        $aInvoices = $this->oTrimesterCalculator->getInvoices();
+
+        //comprobar
+        //$this->assertCount( 1, $aInvoices );
+        $this->assertTrue( count( $aInvoices ) === 1 );
     }
-...
-}
-                        </code>\Drupal\Tests\Core\Config\Entity\ConfigEntityBaseUnitTest</pre>
+    ...
+}</code></pre>
                         <aside class="notes">
                             Los @depends se suelen usar para proveer de argumentos a otros tests. Si falla el test del cual dependen los demás, estos no se ejecutan.
                         </aside>
                     </section>
 
-                    <section data-background="img/background.png">
+                    <section>
                         <h2>@dataProvider</h2>
-                        <pre><code>class UuidTest extends UnitTestCase {
+                        <pre><code>class TrimesterTaxCalculatorTest extends \PHPUnit_Framework_TestCase {
+    ...
+    public function invoicesAndGrossIncomeProvider() {
+        $oClient = new Client( 'Obi Wan', 'Kenobi' );
 
-    /**
-    * Dataprovider for UUID instance tests.
-    *
-    * @return array
-    */
-    public function providerUuidInstances() {
-
-        $instances = array();
-        $instances[][] = new Php();
-
-        // If valid PECL extensions exists add to list.
-        if (function_exists('uuid_create') && !function_exists('uuid_make')) {
-            $instances[][] = new Pecl();
-        }
-
-        // If we are on Windows add the com implementation as well.
-        if (function_exists('com_create_guid')) {
-            $instances[][] = new Com();
-        }
-
-        return $instances;
-    }
-
-    /**
-    * Tests generating valid UUIDs.
-    *
-    * @dataProvider providerUuidInstances
-    */
-    public function testGenerateUuid(UuidInterface $instance) {
-        $this->assertTrue(Uuid::isValid($instance->generate()), sprintf('UUID generation for %s works.', get_class($instance)));
-    }
-
-    /**
-    * Tests that generated UUIDs are unique.
-    *
-    * @dataProvider providerUuidInstances
-    */
-    public function testUuidIsUnique(UuidInterface $instance) {
-        $this->assertNotEquals($instance->generate(), $instance->generate(), sprintf('Same UUID was not generated twice with %s.', get_class($instance)));
-    }
-
-
-    /**
-    * Tests UUID validation.
-    *
-    * @param string $uuid
-    *   The uuid to check against.
-    * @param bool $is_valid
-    *   Whether the uuid is valid or not.
-    * @param string $message
-    *   The message to display on failure.
-    *
-    * @dataProvider providerTestValidation
-    */
-    public function testValidation($uuid, $is_valid, $message) {
-        $this->assertSame($is_valid, Uuid::isValid($uuid), $message);
-    }
-
-    /**
-    * Dataprovider for UUID instance tests.
-    *
-    * @return array
-    *  An array of arrays containing
-    *   - The Uuid to check against.
-    *   - (bool) Whether or not the Uuid is valid.
-    *   - Failure message.
-    */
-    public function providerTestValidation() {
         return array(
-            // These valid UUIDs.
-            array('6ba7b810-9dad-11d1-80b4-00c04fd430c8', TRUE, 'Basic FQDN UUID did not validate'),
-            array('00000000-0000-0000-0000-000000000000', TRUE, 'Minimum UUID did not validate'),
-            array('ffffffff-ffff-ffff-ffff-ffffffffffff', TRUE, 'Maximum UUID did not validate'),
-            // These are invalid UUIDs.
-            array('0ab26e6b-f074-4e44-9da-601205fa0e976', FALSE, 'Invalid format was validated'),
-            array('0ab26e6b-f074-4e44-9daf-1205fa0e9761f', FALSE, 'Invalid length was validated'),
+            array( //first time
+                array( //first argument
+                    new Invoice( $oClient, 1000 )
+                ),
+                1000, //second argument
+            ),
+            array(//second time
+                array(//first argument
+                    new Invoice( $oClient, 1000 ),
+                    new Invoice( $oClient, 2000 ),
+                ),
+                3000, //second argument
+            ),
+            array(//third time
+                array(//first argument
+                    new Invoice( $oClient, 1000 ),
+                    new Invoice( $oClient, 2000 ),
+                    new Invoice( $oClient, 3000 ),
+                ),
+                6000, //second argument
+            ),
         );
     }
-}
-                        </code>\Drupal\Tests\Component\Uuid\UuidTest</pre>
+
+    /**
+     * @dataProvider invoicesAndGrossIncomeProvider
+     */
+    public function testIfItGetsTheGrossIncome( $aInvoices, $nGrossIncome ) {
+        foreach ( $aInvoices as $oInvoice ) {
+            $this->oTrimesterCalculator->addInvoice( $oInvoice );
+        }
+
+        $this->assertEquals( $nGrossIncome, $this->oTrimesterCalculator->getGrossIncome() );
+    }
+    ...
+}</code></pre>
                         <aside class="notes">
                             Con los @dataProviders puedes ejecutar varias veces un test con distintos argumentos.
                         </aside>
                     </section>
-
-                    <section data-background="img/background.png">
-                        <h2>@expectedException</h2>
-                        <pre><code>class DateTimePlusTest extends UnitTestCase {
+                    <section>
+                    <h2>@dataProvider</h2>
+                        <pre><code>class InvoiceTest extends \PHPUnit_Framework_TestCase {
     ...
-    public function providerTestInvalidDates() {
+    public function differentClientsProvider() {
         return array(
-            // Test for invalid month names when we are using a short version
-            // of the month.
-            array('23 abc 2012', NULL, 'd M Y', "23 abc 2012 contains an invalid month name and did not produce errors."),
-            // Test for invalid hour.
-            array('0000-00-00T45:30:00', NULL, 'Y-m-d\TH:i:s', "0000-00-00T45:30:00 contains an invalid hour and did not produce errors."),
-            // Test for invalid day.
-            array('0000-00-99T05:30:00', NULL, 'Y-m-d\TH:i:s', "0000-00-99T05:30:00 contains an invalid day and did not produce errors."),
-            // Test for invalid month.
-            array('0000-75-00T15:30:00', NULL, 'Y-m-d\TH:i:s', "0000-75-00T15:30:00 contains an invalid month and did not produce errors."),
-            // Test for invalid year.
-            array('11-08-01T15:30:00', NULL, 'Y-m-d\TH:i:s', "11-08-01T15:30:00 contains an invalid year and did not produce errors."),
+            array( //first time
+                new Client( 'Obi Wan', 'Kenobi' ), //first arg
+                0 //second arg
+            ),
+            array( //second time
+                new Client( 'Luke', 'Skywalker', 0.5 ), //first arg
+                0.5 //second arg
+            )
+
         );
     }
 
     /**
-    * @dataProvider providerTestInvalidDates
-    * @expectedException \Exception
-    */
-    public function testInvalidDates($input, $timezone, $format, $message) {
-        DateTimePlus::createFromFormat($format, $input, $timezone);
+     * @dataProvider differentClientsProvider
+     */
+    public function testIfItAppliesCorrectlyTheDiscountToTheClients( $oClient, $nDiscount ) {
+        $nGrossAmount = 1000;
+        $oInvoice = new Invoice( $oClient, $nGrossAmount );
+
+        $nAmountAfterTaxes = $nGrossAmount * ( 1 - Invoice::DEFAULT_TAXES );
+        $nAmountAfterDiscount = $nAmountAfterTaxes * ( 1 - $nDiscount );
+
+        $this->assertEquals( $nAmountAfterDiscount, $oInvoice->getNet() );
     }
     ...
-</code>\Drupal\Tests\Component\Datetime\DateTimePlusTest</pre>
+}</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>@expectedException</h2>
+                        <pre><code>class TrimesterTaxCalculatorTest extends \PHPUnit_Framework_TestCase {
+    ...
+    /**
+     * @expectedException TaxCalculator\Exception\InvoiceNotFound
+     */
+    public function testIfItThrowsAnExceptionIfTheInvoiceDoesNotExist() {
+        $oInvoice = new Invoice( $this->oClient, 1000 );
+
+        $this->oTrimesterCalculator->removeInvoice( $oInvoice );
+    }
+    ...
+}</code></pre>
                         <aside class="notes">
                             También se puede comprobar la salida del script o los errores de PHP.
                         </aside>
                     </section>
                 </section>
 
-                <section data-background="img/background.png">
-                    <section data-background="img/background.png">
+                <section>
+                    <section>
                         <h2>Mocks/Stub</h2>
                         <p>Un mock es un objeto de mentira.</p>
                     </section>
-                    <section data-background="img/background.png">
+                    <section>
                         <img src="img/rajoy.jpg" />
                     </section>
-                    <section data-background="img/background.png">
+                    <section>
                         <h2>Con un mock puedes:</h2>
                         <ul>
                             <li>Comprobar si un método se ha llamado</li>
@@ -540,125 +489,48 @@ $this->assertEquals($this->config['two'], $settingTwo);
                             <li>...</li>
                         </ul>
                     </section>
-                    <section data-background="img/background.png">
+                    <section>
                         <h2>Cómo usar un mock</h2>
                         <pre><code>//Creamos el mock
 $oMock = $this->getMock('Clase_a_la_que_falsear');
 
 //Cambiamos su comportamiento o hacemos comprobaciones
-$oMock->expects( número_de_llamadas_esperadas )1
+$oMock->expects( número_de_llamadas_esperadas )
 ->method( 'metodo_que_vigilar' )
 ->will( valor_a_devolver );
                         </code></pre>
                     </section>
-                    <section data-background="img/background.png">
-                        <pre><code>class AliasManagerTest extends UnitTestCase {
+                    <section>
+                        <pre><code>class TrimesterTaxCalculatorTest extends \PHPUnit_Framework_TestCase {
+    ...
+    public function testIfItGetsTheNetIncome() {
 
-    protected $aliasManager;
+        $mInvoice1 = $this->getInvoiceMock( $this->oClient, 1000 );
+        $mInvoice2 = $this->getInvoiceMock( $this->oClient, 2000 );
 
-    protected $aliasStorage;
+        $mInvoice1->expects( $this->once() )
+            ->method( 'getNet' )
+            ->willReturn( 5 );
 
-    protected $aliasWhitelist;
+        $mInvoice2->expects( $this->exactly( 1 ) )
+            ->method( 'getNet' )
+            ->willReturn( 10 );
 
-    protected $languageManager;
+        $this->oTrimesterCalculator->addInvoice( $mInvoice1 );
+        $this->oTrimesterCalculator->addInvoice( $mInvoice2 );
 
-    protected $cache;
-
-    protected $cacheKey = 'preload-paths:key';
-
-    protected $path = 'key';
-
-    /**
-    * {@inheritdoc}
-    */
-    protected function setUp() {
-        parent::setUp();
-
-        $this->aliasStorage = $this->getMock('Drupal\Core\Path\AliasStorageInterface');
-        $this->aliasWhitelist = $this->getMock('Drupal\Core\Path\AliasWhitelistInterface');
-        $this->languageManager = $this->getMock('Drupal\Core\Language\LanguageManagerInterface');
-        $this->cache = $this->getMock('Drupal\Core\Cache\CacheBackendInterface');
-
-        $this->aliasManager = new AliasManager($this->aliasStorage, $this->aliasWhitelist, $this->languageManager, $this->cache);
-
+        $this->assertEquals( 15, $this->oTrimesterCalculator->getNetIncome() );
     }
 
-    /**
-    * Tests the getPathByAlias method for an alias that have no matching path.
-    *
-    * @covers ::getPathByAlias()
-    */
-    public function testGetPathByAliasNoMatch() {
-        $alias = $this->randomMachineName();
-
-        $language = new Language(array('id' => 'en'));
-
-        $this->languageManager->expects($this->any())
-            ->method('getCurrentLanguage')
-            ->with(LanguageInterface::TYPE_URL)
-            ->will($this->returnValue($language));
-
-        $this->aliasStorage->expects($this->once())
-            ->method('lookupPathSource')
-            ->with($alias, $language->getId())
-            ->will($this->returnValue(NULL));
-
-        $this->assertEquals($alias, $this->aliasManager->getPathByAlias($alias));
-        // Call it twice to test the static cache.
-        $this->assertEquals($alias, $this->aliasManager->getPathByAlias($alias));
+    protected function getInvoiceMock( Client $oClient, $nGrossAmount ) {
+        return $this->getMock( 'TaxCalculator\Invoice', array( 'getNet' ), array( $oClient, $nGrossAmount ) );
     }
-
-    /**
-    * Tests the getPathByAlias method for an alias that have a matching path.
-    *
-    * @covers ::getPathByAlias()
-    */
-    public function testGetPathByAliasNatch() {
-        $alias = $this->randomMachineName();
-        $path = $this->randomMachineName();
-
-        $language = $this->setUpCurrentLanguage();
-
-        $this->aliasStorage->expects($this->once())
-            ->method('lookupPathSource')
-            ->with($alias, $language->getId())
-            ->will($this->returnValue($path));
-
-        $this->assertEquals($path, $this->aliasManager->getPathByAlias($alias));
-        // Call it twice to test the static cache.
-        $this->assertEquals($path, $this->aliasManager->getPathByAlias($alias));
-    }
-...</code>\Drupal\Tests\Core\Path\AliasManagerTest</pre>
-                    </section>
-                    <section data-background="img/background.png">
-                        <pre><code>class PasswordHashingTest extends UnitTestCase {
-
-    protected $user;
-    protected $password;
-    protected $md5Password;
-...
-    protected function setUp() {
-        parent::setUp();
-        $this->user = $this->getMockBuilder('Drupal\user\Entity\User')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $this->passwordHasher = new PhpassHashedPassword(1);
-    }
-...
-    public function testPasswordNeedsUpdate() {
-        $this->user->expects($this->any())
-            ->method('getPassword')
-            ->will($this->returnValue($this->md5Password));
-        // The md5 password should be flagged as needing an update.
-        $this->assertTrue($this->passwordHasher->userNeedsNewHash($this->user), 'User with md5 password needs a new hash.');
-    }
-...
-
-                        </code>\Drupal\Tests\Core\Password\PasswordHashingTest</pre>
+    ...
+}</code></pre>
                     </section>
                 </section>
-                <section data-background="img/background.png">
-                    <section data-background="img/background.png">
+                <section>
+                    <section>
                         <h2>PHPUNIT.xml</h2>
                         <ul>
                             <li>Indica de cuáles son las suites y en qué directorios están los tests</li>
@@ -666,43 +538,31 @@ $oMock->expects( número_de_llamadas_esperadas )1
                             <li><strong>Permite indicar un archivo de bootstrap</strong></li>
                         </ul>
                     </section>
-                    <section data-background="img/background.png">
+                    <section>
                         <pre><code><?xml version="1.0" encoding="UTF-8"?>
-
-<phpunit bootstrap="tests/bootstrap.php" colors="true">
-    <php>
-        <!-- Set error reporting to E_ALL. -->
-        <ini name="error_reporting" value="32767"/>
-        <!-- Do not limit the amount of memory tests take to run. -->
-        <ini name="memory_limit" value="-1"/>
-    </php>
+<phpunit
+        backupGlobals = "false"
+        backupStaticAttributes = "false"
+        colors = "true"
+        convertErrorsToExceptions = "true"
+        convertNoticesToExceptions = "true"
+        convertWarningsToExceptions = "true"
+        processIsolation = "false"
+        stopOnFailure = "true"
+        syntaxCheck = "false"
+        bootstrap   = "bootstrap.php">
     <testsuites>
-        <testsuite name="Drupal Unit Test Suite">
-            <directory>./tests</directory>
-            <directory>./modules/*/tests</directory>
-            <directory>../modules</directory>
-            <directory>../sites/*/modules</directory>
-            <!-- Exclude Composer's vendor directory so we don't run tests there. -->
-            <exclude>./vendor</exclude>
-            <!-- Exclude Drush tests. -->
-            <exclude>./drush/tests</exclude>
-            <!-- Exclude special-case files from config's test modules. -->
-            <exclude>./modules/config/tests/config_test/src</exclude>
+        <testsuite name="Tax Calculator">
+            <directory>tests/</directory>
         </testsuite>
     </testsuites>
-    <!-- Filter for coverage reports. -->
-    <filter>
-        <whitelist>
-            <directory>./includes</directory>
-            <directory>./lib</directory>
-            <directory>./modules</directory>
-            <directory>../modules</directory>
-            <directory>../sites</directory>
-        </whitelist>
-    </filter>
-</phpunit></code>./core/phpunit.xml.dist</pre>
+
+</phpunit></code>./phpunit.xml</pre>
                     </section>
                 </section>
+            <section>
+                <h2>PHPUnit y xDebug</h2>
+            </section>
             <section>
                 <img src="img/esoEsTodoAmigos.jpg" />
             </section>
